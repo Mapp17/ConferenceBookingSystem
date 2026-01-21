@@ -1,0 +1,270 @@
+openapi: 3.0.0
+info:
+  title: Conference Room Booking API
+  description: API for managing conference rooms, bookings, and availability within an office environment.
+  version: 1.0.0
+  contact:
+    name: Support Team
+    email: support@bitcubetrainee.tech
+servers:
+  - url: https://staging-api.bitcubetrainee.tech/api
+    description: Staging server for internal testing
+  - url: https://api.bitcubetrainee.tech
+    description: Production server for publishing live
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Room:
+      type: object
+      required:
+        - id
+        - name
+        - capacity
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        capacity:
+          type: integer
+        equipment:
+          type: array
+          items:
+            type: string
+    Booking:
+      type: object
+      required:
+        - id
+        - roomId
+        - startTime
+        - endTime
+        - bookedBy
+      properties:
+        id:
+          type: string
+        roomId:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        bookedBy:
+          type: string
+        recurring:
+          type: boolean
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+security:
+  - BearerAuth: []
+paths:
+  /rooms:
+    get:
+      summary: List all rooms
+      responses:
+        '200':
+          description: Array of rooms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Room'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new room
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+      responses:
+        '201':
+          description: Room created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /rooms/{roomId}:
+    get:
+      summary: Get details of a single room
+      parameters:
+        - name: roomId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Room details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '404':
+          description: Room not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete a room
+      parameters:
+        - name: roomId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Room deleted
+        '404':
+          description: Room not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /bookings:
+    get:
+      summary: List all bookings
+      responses:
+        '200':
+          description: Array of bookings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+    post:
+      summary: Create a new booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Booking'
+      responses:
+        '201':
+          description: Booking created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+        '400':
+          description: Invalid booking data or conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /bookings/{bookingId}:
+    get:
+      summary: Get booking details
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Booking details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+        '404':
+          description: Booking not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+   
+  /availability:
+    get:
+      summary: Check available rooms for a given time slot
+      parameters:
+        - name: startTime
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: endTime
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: capacity
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of available rooms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Room'
+        '400':
+          description: Invalid query parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /rooms/{roomId}/equipment:
+    get:
+      summary: Get equipment for a specific room
+      parameters:
+        - name: roomId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of equipment items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '404':
+          description: Room not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
