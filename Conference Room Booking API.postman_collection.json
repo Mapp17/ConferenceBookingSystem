@@ -1,0 +1,1970 @@
+{
+  "info": {
+    "_postman_id": "8e314f87-08e5-4d40-bce5-4dc26af4b760",
+    "name": "Conference Room Booking API",
+    "description": "API for managing conference rooms, bookings, and availability within an office environment.\n\nContact Support:  \nName: Support Team  \nEmail: [support@company.com](https://mailto:support@company.com)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51698551"
+  },
+  "item": [
+    {
+      "name": "rooms",
+      "item": [
+        {
+          "name": "{roomId}",
+          "item": [
+            {
+              "name": "equipment",
+              "item": [
+                {
+                  "name": "Get equipment for a specific room",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rooms/:roomId/equipment",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rooms",
+                        ":roomId",
+                        "equipment"
+                      ],
+                      "variable": [
+                        {
+                          "key": "roomId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Array of equipment items",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/rooms/:roomId/equipment",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "rooms",
+                            ":roomId",
+                            "equipment"
+                          ],
+                          "variable": [
+                            {
+                              "key": "roomId",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "[\n  \"string\",\n  \"string\"\n]"
+                    },
+                    {
+                      "name": "Room not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/rooms/:roomId/equipment",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "rooms",
+                            ":roomId",
+                            "equipment"
+                          ],
+                          "variable": [
+                            {
+                              "key": "roomId",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Get details of a single room",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rooms/:roomId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rooms",
+                    ":roomId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "roomId",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Room details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rooms/:roomId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rooms",
+                        ":roomId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "roomId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"room-101\",\n  \"name\": \"Conference Room 101\",\n  \"capacity\": 10,\n  \"equipment\": [\n    \"Projector\",\n    \"Whiteboard\"\n  ]\n}"
+                },
+                {
+                  "name": "Room not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rooms/:roomId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rooms",
+                        ":roomId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "roomId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+                },
+                {
+                  "name": "Get details of a single room",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rooms/:roomId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rooms",
+                        ":roomId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "roomId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": null,
+                  "header": null,
+                  "cookie": [],
+                  "body": null
+                }
+              ]
+            },
+            {
+              "name": "Update room details",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"room-101\",\n  \"name\": \"Conference Room 101\",\n  \"capacity\": 10,\n  \"equipment\": [\n    \"Projector\",\n    \"Whiteboard\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rooms/:roomId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rooms",
+                    ":roomId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "roomId",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Room updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"room-101\",\n  \"name\": \"Conference Room 101\",\n  \"capacity\": 10,\n  \"equipment\": [\n    \"Projector\",\n    \"Whiteboard\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/rooms/:roomId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rooms",
+                        ":roomId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "roomId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"room-101\",\n  \"name\": \"Conference Room 101\",\n  \"capacity\": 10,\n  \"equipment\": [\n    \"Projector\",\n    \"Whiteboard\"\n  ]\n}"
+                },
+                {
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"room-101\",\n  \"name\": \"Conference Room 101\",\n  \"capacity\": 10,\n  \"equipment\": [\n    \"Projector\",\n    \"Whiteboard\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/rooms/:roomId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rooms",
+                        ":roomId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "roomId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Delete a room",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rooms/:roomId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rooms",
+                    ":roomId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "roomId",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Room deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rooms/:roomId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rooms",
+                        ":roomId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "roomId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Room not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rooms/:roomId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rooms",
+                        ":roomId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "roomId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "List all rooms",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{bearerToken}}"
+              },
+              {
+                "key": "x-mock-response-name",
+                "value": "Array of rooms"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rooms",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rooms"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Array of rooms",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rooms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rooms"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"room-101\",\n    \"name\": \"Conference Room 101\",\n    \"capacity\": 10,\n    \"equipment\": [\n      \"Projector\",\n      \"Whiteboard\"\n    ]\n  },\n  {\n    \"id\": \"room-101\",\n    \"name\": \"Conference Room 101\",\n    \"capacity\": 10,\n    \"equipment\": [\n      \"Projector\",\n      \"Whiteboard\"\n    ]\n  }\n]"
+            },
+            {
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rooms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rooms"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+            },
+            {
+              "name": "List all rooms",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bearerToken}}"
+                  },
+                  {
+                    "key": "x-mock-response-name",
+                    "value": "Array of rooms"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rooms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rooms"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 21 Jan 2026 23:08:48 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=1d27615aa8375788"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=4ec164a1eb309648"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "116"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1769036932"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"12c-bJcbD0IC7WtD+M9Shkz7jtcnHdY\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "126"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "__cf_bm=80Rpwbbq8.HkDE8y_1R5GfA9rn75dXg.GVid1DMDfyw-1769036928-1.0.1.1-8PkwGffYhKZXc6Hu0rSuu_xzO_KcN2b6GzWrrr89ELNblBBrauNRwQ8E6Vbn.o3UPPH6zH7_.WpziEanlydgJHnjxkzZVf0CKrtGVCmkPEE; path=/; expires=Wed, 21-Jan-26 23:38:48 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9c1a79c34ae920cc-IAD"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": \"room-101\",\n        \"name\": \"Conference Room 101\",\n        \"capacity\": 10,\n        \"equipment\": [\n            \"Projector\",\n            \"Whiteboard\"\n        ]\n    },\n    {\n        \"id\": \"room-101\",\n        \"name\": \"Conference Room 101\",\n        \"capacity\": 10,\n        \"equipment\": [\n            \"Projector\",\n            \"Whiteboard\"\n        ]\n    }\n]"
+            },
+            {
+              "name": "List all rooms",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bearerToken}}"
+                  },
+                  {
+                    "key": "x-mock-response-name",
+                    "value": "Array of rooms"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rooms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rooms"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 21 Jan 2026 23:08:48 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=1d27615aa8375788"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=4ec164a1eb309648"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "116"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1769036932"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"12c-bJcbD0IC7WtD+M9Shkz7jtcnHdY\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "126"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "__cf_bm=80Rpwbbq8.HkDE8y_1R5GfA9rn75dXg.GVid1DMDfyw-1769036928-1.0.1.1-8PkwGffYhKZXc6Hu0rSuu_xzO_KcN2b6GzWrrr89ELNblBBrauNRwQ8E6Vbn.o3UPPH6zH7_.WpziEanlydgJHnjxkzZVf0CKrtGVCmkPEE; path=/; expires=Wed, 21-Jan-26 23:38:48 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9c1a79c34ae920cc-IAD"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": \"room-101\",\n        \"name\": \"Conference Room 101\",\n        \"capacity\": 10,\n        \"equipment\": [\n            \"Projector\",\n            \"Whiteboard\"\n        ]\n    },\n    {\n        \"id\": \"room-101\",\n        \"name\": \"Conference Room 101\",\n        \"capacity\": 10,\n        \"equipment\": [\n            \"Projector\",\n            \"Whiteboard\"\n        ]\n    }\n]"
+            },
+            {
+              "name": "List all rooms",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bearerToken}}"
+                  },
+                  {
+                    "key": "x-mock-response-name",
+                    "value": "Array of rooms"
+                  }
+                ],
+                "url": {
+                  "raw": "https://8cab4ea0-d1c1-4e3e-8b36-9c6537c0e80b.mock.pstmn.io/rooms",
+                  "protocol": "https",
+                  "host": [
+                    "8cab4ea0-d1c1-4e3e-8b36-9c6537c0e80b",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "rooms"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 21 Jan 2026 23:29:37 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=c84eb6adb17e5a82"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=45c4915c439cc5cc"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1769038237"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"12c-bJcbD0IC7WtD+M9Shkz7jtcnHdY\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "160"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "__cf_bm=_N.FU3wfRTZfNu89104h.2BOvUgUYvhsWcjCSd_nfVc-1769038177-1.0.1.1-uGlJGB7Exfzza8W8Q2kXvj5dUbK2iZ6D4fr9g8m_Z2oMrFf8YPR10BVTlWzjYZDMRm9SdGEvWD36zkvs3aRiy9zGzwoRFiB6XfL8zy4gkrw; path=/; expires=Wed, 21-Jan-26 23:59:37 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9c1a983f48260833-IAD"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": \"room-101\",\n        \"name\": \"Conference Room 101\",\n        \"capacity\": 10,\n        \"equipment\": [\n            \"Projector\",\n            \"Whiteboard\"\n        ]\n    },\n    {\n        \"id\": \"room-101\",\n        \"name\": \"Conference Room 101\",\n        \"capacity\": 10,\n        \"equipment\": [\n            \"Projector\",\n            \"Whiteboard\"\n        ]\n    }\n]"
+            },
+            {
+              "name": "List all rooms",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bearerToken}}"
+                  },
+                  {
+                    "key": "x-mock-response-name",
+                    "value": "Array of rooms"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rooms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rooms"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Create a new room",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"room-101\",\n  \"name\": \"Conference Room 101\",\n  \"capacity\": 10,\n  \"equipment\": [\n    \"Projector\",\n    \"Whiteboard\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rooms",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rooms"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Room created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"room-101\",\n  \"name\": \"Conference Room 101\",\n  \"capacity\": 10,\n  \"equipment\": [\n    \"Projector\",\n    \"Whiteboard\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rooms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rooms"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"room-101\",\n  \"name\": \"Conference Room 101\",\n  \"capacity\": 10,\n  \"equipment\": [\n    \"Projector\",\n    \"Whiteboard\"\n  ]\n}"
+            },
+            {
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"room-101\",\n  \"name\": \"Conference Room 101\",\n  \"capacity\": 10,\n  \"equipment\": [\n    \"Projector\",\n    \"Whiteboard\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rooms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rooms"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "bookings",
+      "item": [
+        {
+          "name": "{bookingId}",
+          "item": [
+            {
+              "name": "Get booking details",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bookings/:bookingId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bookings",
+                    ":bookingId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "bookingId",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Booking details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bookings",
+                        ":bookingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"booking-001\",\n  \"roomId\": \"room-101\",\n  \"startTime\": \"2026-01-25T10:00:00Z\",\n  \"endTime\": \"2026-01-25T11:00:00Z\",\n  \"bookedBy\": \"employee123\",\n  \"recurring\": false\n}"
+                },
+                {
+                  "name": "Booking not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bookings",
+                        ":bookingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Update a booking",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"booking-001\",\n  \"roomId\": \"room-101\",\n  \"startTime\": \"2026-01-25T10:00:00Z\",\n  \"endTime\": \"2026-01-25T11:00:00Z\",\n  \"bookedBy\": \"employee123\",\n  \"recurring\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/bookings/:bookingId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bookings",
+                    ":bookingId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "bookingId",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Booking updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"booking-001\",\n  \"roomId\": \"room-101\",\n  \"startTime\": \"2026-01-25T10:00:00Z\",\n  \"endTime\": \"2026-01-25T11:00:00Z\",\n  \"bookedBy\": \"employee123\",\n  \"recurring\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bookings",
+                        ":bookingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"booking-001\",\n  \"roomId\": \"room-101\",\n  \"startTime\": \"2026-01-25T10:00:00Z\",\n  \"endTime\": \"2026-01-25T11:00:00Z\",\n  \"bookedBy\": \"employee123\",\n  \"recurring\": false\n}"
+                },
+                {
+                  "name": "Invalid booking data or conflict",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"booking-001\",\n  \"roomId\": \"room-101\",\n  \"startTime\": \"2026-01-25T10:00:00Z\",\n  \"endTime\": \"2026-01-25T11:00:00Z\",\n  \"bookedBy\": \"employee123\",\n  \"recurring\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bookings",
+                        ":bookingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Cancel a booking",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bookings/:bookingId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bookings",
+                    ":bookingId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "bookingId",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Booking cancelled",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bookings",
+                        ":bookingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Booking not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bookings/:bookingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bookings",
+                        ":bookingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "bookingId",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "List all bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/bookings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bookings"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Array of bookings",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bookings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bookings"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"booking-001\",\n    \"roomId\": \"room-101\",\n    \"startTime\": \"2026-01-25T10:00:00Z\",\n    \"endTime\": \"2026-01-25T11:00:00Z\",\n    \"bookedBy\": \"employee123\",\n    \"recurring\": false\n  },\n  {\n    \"id\": \"booking-001\",\n    \"roomId\": \"room-101\",\n    \"startTime\": \"2026-01-25T10:00:00Z\",\n    \"endTime\": \"2026-01-25T11:00:00Z\",\n    \"bookedBy\": \"employee123\",\n    \"recurring\": false\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create a new booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"booking-001\",\n  \"roomId\": \"room-101\",\n  \"startTime\": \"2026-01-25T10:00:00Z\",\n  \"endTime\": \"2026-01-25T11:00:00Z\",\n  \"bookedBy\": \"employee123\",\n  \"recurring\": false\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/bookings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bookings"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Booking created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"booking-001\",\n  \"roomId\": \"room-101\",\n  \"startTime\": \"2026-01-25T10:00:00Z\",\n  \"endTime\": \"2026-01-25T11:00:00Z\",\n  \"bookedBy\": \"employee123\",\n  \"recurring\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/bookings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bookings"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"booking-001\",\n  \"roomId\": \"room-101\",\n  \"startTime\": \"2026-01-25T10:00:00Z\",\n  \"endTime\": \"2026-01-25T11:00:00Z\",\n  \"bookedBy\": \"employee123\",\n  \"recurring\": false\n}"
+            },
+            {
+              "name": "Invalid booking data or conflict",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"booking-001\",\n  \"roomId\": \"room-101\",\n  \"startTime\": \"2026-01-25T10:00:00Z\",\n  \"endTime\": \"2026-01-25T11:00:00Z\",\n  \"bookedBy\": \"employee123\",\n  \"recurring\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/bookings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bookings"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "availability",
+      "item": [
+        {
+          "name": "Check available rooms for a given time slot",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/availability?startTime=2000-06-24T14:56:20.384Z&endTime=2000-06-24T14:56:20.384Z&capacity=4104",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "availability"
+              ],
+              "query": [
+                {
+                  "key": "startTime",
+                  "value": "2000-06-24T14:56:20.384Z"
+                },
+                {
+                  "key": "endTime",
+                  "value": "2000-06-24T14:56:20.384Z"
+                },
+                {
+                  "key": "capacity",
+                  "value": "4104"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "List of available rooms",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/availability?startTime=2000-06-24T14:56:20.384Z&endTime=2000-06-24T14:56:20.384Z&capacity=4104",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "availability"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "2000-06-24T14:56:20.384Z"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "2000-06-24T14:56:20.384Z"
+                    },
+                    {
+                      "key": "capacity",
+                      "value": "4104"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"room-101\",\n    \"name\": \"Conference Room 101\",\n    \"capacity\": 10,\n    \"equipment\": [\n      \"Projector\",\n      \"Whiteboard\"\n    ]\n  },\n  {\n    \"id\": \"room-101\",\n    \"name\": \"Conference Room 101\",\n    \"capacity\": 10,\n    \"equipment\": [\n      \"Projector\",\n      \"Whiteboard\"\n    ]\n  }\n]"
+            },
+            {
+              "name": "Invalid query parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/availability?startTime=2000-06-24T14:56:20.384Z&endTime=2000-06-24T14:56:20.384Z&capacity=4104",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "availability"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "2000-06-24T14:56:20.384Z"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "2000-06-24T14:56:20.384Z"
+                    },
+                    {
+                      "key": "capacity",
+                      "value": "4104"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Invalid room ID\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "pm.test(\"Status code is 200\", function () {\r",
+          "    pm.response.to.have.status(200);\r",
+          "});\r",
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://staging.example.com/api"
+    }
+  ]
+}
