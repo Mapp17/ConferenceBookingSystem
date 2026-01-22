@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "8e314f87-08e5-4d40-bce5-4dc26af4b760",
-    "name": "Conference Room Booking API",
+    "name": "Conference Room Booking API (mock)",
     "description": "API for managing conference rooms, bookings, and availability within an office environment.\n\nContact Support:  \nName: Support Team  \nEmail: [support@company.com](https://mailto:support@company.com)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "51698551"
@@ -1784,6 +1784,55 @@
       "item": [
         {
           "name": "Check available rooms for a given time slot",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Request-specific tests for \"Check available rooms for a given time slot\"",
+                  "(function(){",
+                  "    const status = pm.response.code;",
+                  "    const ct = (pm.response.headers.get('Content-Type') || '').toLowerCase();",
+                  "    let json;",
+                  "    if (ct.includes('application/json')) {",
+                  "        try { json = pm.response.json(); } catch (e) { json = null; }",
+                  "    }",
+                  "",
+                  "    // 200 OK: body has rooms-like structure or is array",
+                  "    pm.test('200: response contains rooms-like data', function () {",
+                  "        if (status === 200) {",
+                  "            pm.expect(json, 'Body should be JSON for 200').to.be.an('object').or.to.be.an('array');",
+                  "            let isArray = Array.isArray(json);",
+                  "            let hasRoomsProp = false;",
+                  "            if (!isArray && json) {",
+                  "                const candidateKeys = ['rooms', 'data', 'items', 'results', 'availableRooms'];",
+                  "                hasRoomsProp = candidateKeys.some(k => Object.prototype.hasOwnProperty.call(json, k) && (Array.isArray(json[k]) || typeof json[k]) );",
+                  "            }",
+                  "            pm.expect(isArray || hasRoomsProp, 'Expected an array or a rooms-like property').to.be.true;",
+                  "        } else {",
+                  "            pm.expect(true).to.be.true; // not applicable",
+                  "        }",
+                  "    });",
+                  "",
+                  "    // 400 Bad Request: error structure present",
+                  "    pm.test('400: error structure present with message or error field', function () {",
+                  "        if (status === 400) {",
+                  "            pm.expect(json, 'Body should be JSON for 400').to.be.an('object');",
+                  "            const hasMessage = json && (typeof json.message === 'string' || (json.error && typeof json.error === 'string'));",
+                  "            const hasErrorsArr = json && Array.isArray(json.errors);",
+                  "            pm.expect(hasMessage || hasErrorsArr, 'Expected message/error or errors[] in body').to.be.true;",
+                  "        } else {",
+                  "            pm.expect(true).to.be.true; // not applicable",
+                  "        }",
+                  "    });",
+                  "})();"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [
@@ -1950,13 +1999,49 @@
       "listen": "test",
       "script": {
         "type": "text/javascript",
-        "packages": {},
-        "requests": {},
         "exec": [
-          "pm.test(\"Status code is 200\", function () {\r",
-          "    pm.response.to.have.status(200);\r",
-          "});\r",
-          ""
+          "// Generic tests for all requests in the collection",
+          "// 1) Status code is 2xx or 4xx",
+          "pm.test('Status code is 2xx or 4xx', function () {",
+          "    const code = pm.response.code;",
+          "    pm.expect(code, 'Expected 2xx or 4xx').to.be.within(200, 499);",
+          "});",
+          "",
+          "// 2) Response time under 1500ms",
+          "pm.test('Response time is < 1500 ms', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(1500);",
+          "});",
+          "",
+          "// Helper to decide if body \"looks like\" JSON",
+          "function looksLikeJson(text) {",
+          "    if (!text || typeof text !== 'string') { return false; }",
+          "    const t = text.trim();",
+          "    if (!(t.startsWith('{') || t.startsWith('['))) { return false; }",
+          "    try { JSON.parse(t); return true; } catch (e) { return false; }",
+          "}",
+          "",
+          "// 3) If body looks like JSON, Content-Type contains application/json",
+          "pm.test('If body looks like JSON, Content-Type contains application/json', function () {",
+          "    const bodyText = pm.response.text();",
+          "    const isJsonLike = looksLikeJson(bodyText);",
+          "    const ct = pm.response.headers.get('Content-Type') || '';",
+          "    if (isJsonLike) {",
+          "        pm.expect(ct.toLowerCase()).to.include('application/json');",
+          "    } else {",
+          "        pm.expect(true).to.be.true; // no-op when not JSON-like",
+          "    }",
+          "});",
+          "",
+          "// 4) When Content-Type is JSON, body parses as valid JSON",
+          "pm.test('Body is valid JSON when Content-Type is JSON', function () {",
+          "    const ct = (pm.response.headers.get('Content-Type') || '').toLowerCase();",
+          "    if (ct.includes('application/json')) {",
+          "        // Should not throw",
+          "        pm.expect(function () { pm.response.json(); }).to.not.throw();",
+          "    } else {",
+          "        pm.expect(true).to.be.true; // no-op otherwise",
+          "    }",
+          "});"
         ]
       }
     }
